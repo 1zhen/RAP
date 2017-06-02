@@ -206,11 +206,14 @@
                     <configuration>
                         <type>standalone</type>
                         <properties>
-                            <cargo.jvmargs>
-                                -Xdebug
-                                -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8787
-                            </cargo.jvmargs>
+                            <cargo.jvmargs>${cargo.jvmargs}</cargo.jvmargs>
                         </properties>
+                        <configfiles>
+                            <configfile>
+                                <file>${basedir}/config.properties</file>
+                                <todir>webapps/ROOT/WEB-INF/classes</todir>
+                            </configfile>
+                        </configfiles>
                     </configuration>
                     <deployables>
                         <deployable>
@@ -234,4 +237,20 @@
             </plugin>
         </plugins>
     </build>
+
+    <properties>
+        <cargo.jvmargs></cargo.jvmargs>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>debug</id>
+            <properties>
+                <cargo.jvmargs>
+                    -Xdebug
+                    -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8787
+                </cargo.jvmargs>
+            </properties>
+        </profile>
+    </profiles>
 </project>
