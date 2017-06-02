@@ -197,8 +197,21 @@
                 <artifactId>cargo-maven2-plugin</artifactId>
                 <version>1.4.17</version>
                 <configuration>
-                    <containerId>tomcat8x</containerId>
-                    <containerUrl>http://apache.dataguru.cn/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30.tar.gz</containerUrl>
+                    <container>
+                        <containerId>tomcat8x</containerId>
+                        <zipUrlInstaller>
+                            <url>https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.15/bin/apache-tomcat-8.5.15.tar.gz</url>
+                        </zipUrlInstaller>
+                    </container>
+                    <configuration>
+                        <type>standalone</type>
+                        <properties>
+                            <cargo.jvmargs>
+                                -Xdebug
+                                -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8787
+                            </cargo.jvmargs>
+                        </properties>
+                    </configuration>
                     <deployables>
                         <deployable>
                             <groupId>${project.groupId}</groupId>
@@ -209,6 +222,14 @@
                             </properties>
                         </deployable>
                     </deployables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
         </plugins>

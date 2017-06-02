@@ -4,7 +4,7 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     <bean id="accountMgr"
-          class="com.taobao.rigel.rap.account.service.impl.AccountMgrImpl">
+          class="${rap.system.account_mgr_class}">
         <property name="accountDao" ref="accountDao"/>
         <property name="organizationMgr" ref="organizationMgr"/>
         <property name="projectMgr" ref="projectMgr"/>
